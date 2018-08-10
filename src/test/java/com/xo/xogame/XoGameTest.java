@@ -12,6 +12,7 @@ public class XoGameTest {
     @Test
     public void initialGame(){
         XoGame game = new XoGame();
+        game.initialGame();
         Character[][] actualResult = game.initialGame();
         Character[][] expectedResult = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
         assertEquals(expectedResult,actualResult);
@@ -19,12 +20,18 @@ public class XoGameTest {
 
     @Test
     public void getCurrent(){
-        assert(false);
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.setCurrentTurn('X');
+        assertEquals(game.getCurrent(),new Character('X'));
     }
 
     @Test
     public void switchTurn(){
-        assert(false);
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.switchTurn();
+        assertEquals(game.getCurrent(),new Character('X'));
     }
 
     @Test
