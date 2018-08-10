@@ -11,9 +11,10 @@ import static org.mockito.Mockito.when;
 public class XoGameTest {
     @Test
     public void initialGame(){
-        List mock = mock(List.class);
-        when(mock.size()).thenReturn(5);
-        assertEquals(4,mock.size());
+        XoGame game = new XoGame();
+        Character[][] actualResult = game.initialGame();
+        Character[][] expectedResult = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+        assertEquals(expectedResult,actualResult);
     }
 
     @Test

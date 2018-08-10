@@ -1,11 +1,11 @@
 package com.xo.xogame;
 
 public class XoGame {
-    private char[][] xoGame;
+    private Character[][] xoGame;
     private Character currentCharacter;
 
-    public char[][] initialGame(){
-        char[][] xoGame = new char[3][3];
+    public Character[][] initialGame(){
+        Character[][] xoGame = new Character[3][3];
         for (int row = 0; row < 3; row ++){
             for (int col = 0; col < 3; col++){
                 xoGame[row][col] = (char) (' ');
@@ -26,7 +26,7 @@ public class XoGame {
 
     }
 
-    public char[] getXo(){
+    public Character[] getXo(){
         return null;
     }
 
@@ -38,20 +38,20 @@ public class XoGame {
 
     }
 
-    public Boolean verifyEnd(char[][] xoGame){
+    public Boolean verifyEnd(Character[][] xoGame){
         return true;
     }
 
-    protected Boolean verifyVertical(char[][] xoGame,Character character){
+    protected Boolean verifyVertical(Character[][] xoGame,Character character){
         return true;
     }
-    protected Boolean verifyHorizontal(char[][] xoGame,Character character){
+    protected Boolean verifyHorizontal(Character[][] xoGame,Character character){
         return true;
     }
-    protected Boolean verifyCross(char[][] xoGame,Character character){
+    protected Boolean verifyCross(Character[][] xoGame,Character character){
         return true;
     }
-    protected Boolean verifyDraw(char[][] xoGame,Character character){
+    protected Boolean verifyDraw(Character[][] xoGame,Character character){
         return true;
     }
 
