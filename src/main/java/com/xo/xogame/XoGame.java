@@ -12,6 +12,7 @@ public class XoGame {
                 xoGame[row][col] = (char) (' ');
             }
         }
+        this.setXoGame(xoGame);
         return xoGame;
     }
 
@@ -31,15 +32,27 @@ public class XoGame {
         this.currentCharacter = character;
     }
 
-    public Character[] getXo(){
-        return null;
+    public Character[][] getXo(){
+        return this.xoGame;
     }
 
-    public Boolean verifyMove(int x, int y, Character character){
+    public void setXoGame(Character[][] game){
+        this.xoGame = game;
+    }
+
+    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException,IlligalMoveException{
+        if((x > 2 || y > 2) || (x < 0 || y < 0)){
+            throw new DataOutOfBoundException();
+        }else if(this.getXo()[x][y] != ' '){
+            throw new IlligalMoveException();
+        }
         return true;
     }
 
-    public void move(int x, int y, Character character){
+    public void move(int x, int y, Character character) throws DataOutOfBoundException, IlligalMoveException{
+        if(verifyMove(x,y)){
+            this.getXo()[x][y] = character;
+        }
 
     }
 
