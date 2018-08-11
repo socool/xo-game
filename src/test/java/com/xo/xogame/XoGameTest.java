@@ -397,4 +397,12 @@ public class XoGameTest {
         Boolean isDraw = game.verifyDraw();
         assertEquals(isDraw,false);
     }
+
+    @Test(expected = NullPointerException.class)
+    public void testNotInitialGameShouldBeNull() {
+        XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
+
+        game.setMark(0, 0,xPlayer);
+    }
 }
