@@ -1,11 +1,14 @@
 package com.xo.xogame;
 
+import com.xo.xogame.exception.DataOutOfBoundException;
+import com.xo.xogame.exception.IlligalMoveException;
+
 public class XoGame {
     private Character[][] xoGame;
-    private Character currentCharacter;
+    private Character currentPlayer;
 
     public Character[][] initialGame(){
-        this.setCurrentTurn(new Character('O'));
+        this.setPlayerTurn('O');
         Character[][] xoGame = new Character[3][3];
         for (int row = 0; row < 3; row ++){
             for (int col = 0; col < 3; col++){
@@ -16,20 +19,21 @@ public class XoGame {
         return xoGame;
     }
 
-    public Character getCurrent(){
-        return this.currentCharacter;
+    public Character getCurrentPlayer(){
+        return this.currentPlayer;
     }
 
     protected void switchTurn(){
-        if(this.getCurrent()=='X'){
-            this.setCurrentTurn('O');
+        if(this.getCurrentPlayer()=='X'){
+            this.setPlayerTurn('O');
         }else{
-            this.setCurrentTurn('X');
+            this.setPlayerTurn('X');
         }
     }
 
-    public void setCurrentTurn(Character character){
-        this.currentCharacter = character;
+    public void setPlayerTurn(Character player){
+        assert null != player : "player should not be null";
+        this.currentPlayer = player;
     }
 
     public Character[][] getXo(){
@@ -37,22 +41,19 @@ public class XoGame {
     }
 
     public void setXoGame(Character[][] game){
+        assert game != null : "game should not be null";
         this.xoGame = game;
     }
 
-    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException,IlligalMoveException{
-        if((x > 2 || y > 2) || (x < 0 || y < 0)){
-            throw new DataOutOfBoundException();
-        }else if(this.getXo()[x][y] != ' '){
-            throw new IlligalMoveException();
-        }
+    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException,IlligalMoveException {
+        if((x > 2 || y > 2) || (x < 0 || y < 0)) throw new DataOutOfBoundException();
+        else if(this.getXo()[x][y] != ' ') throw new IlligalMoveException();
         return true;
     }
 
-    public void move(int x, int y, Character character) throws DataOutOfBoundException, IlligalMoveException{
-        if(verifyMove(x,y)){
-            this.getXo()[x][y] = character;
-        }
+    public void move(int x, int y, Character player) throws DataOutOfBoundException, IlligalMoveException{
+        assert player != null : "player should not be null";
+        if(verifyMove(x,y)) this.getXo()[x][y] = player;
 
     }
 

@@ -1,5 +1,7 @@
 package com.xo.xogame;
 
+import com.xo.xogame.exception.DataOutOfBoundException;
+import com.xo.xogame.exception.IlligalMoveException;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -21,8 +23,8 @@ public class XoGameTest {
     public void getCurrent(){
         XoGame game = new XoGame();
         game.initialGame();
-        game.setCurrentTurn('X');
-        assertEquals(game.getCurrent(),new Character('X'));
+        game.setPlayerTurn('X');
+        assertEquals(game.getCurrentPlayer(),new Character('X'));
     }
 
     @Test
@@ -30,15 +32,15 @@ public class XoGameTest {
         XoGame game = new XoGame();
         game.initialGame();
         game.switchTurn();
-        assertEquals(game.getCurrent(),new Character('X'));
+        assertEquals(game.getCurrentPlayer(),new Character('X'));
     }
 
     @Test
     public void setCurrentTurn(){
         XoGame game = new XoGame();
         game.initialGame();
-        game.setCurrentTurn('X');
-        assertEquals(game.getCurrent(),new Character('X'));
+        game.setPlayerTurn('X');
+        assertEquals(game.getCurrentPlayer(),new Character('X'));
     }
 
     @Test
@@ -59,7 +61,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void moveXto1_1() throws DataOutOfBoundException,IlligalMoveException{
+    public void moveXto1_1() throws DataOutOfBoundException,IlligalMoveException {
         XoGame game = new XoGame();
         game.initialGame();
         game.move(1,1,'X');
