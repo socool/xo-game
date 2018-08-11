@@ -15,8 +15,8 @@ public class XoGame {
         this.players[1] = oPlayer;
         this.setPlayerTurn(xPlayer);
         Character[][] xoGame = new Character[3][3];
-        for (int row = 0; row < 3; row ++){
-            for (int col = 0; col < 3; col++){
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
                 xoGame[row][col] = (char) (' ');
             }
         }
@@ -30,11 +30,11 @@ public class XoGame {
         return this.players;
     }
 
-    public Player getCurrentPlayer(){
+    public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 
-    public void setPlayerTurn(Player player){
+    public void setPlayerTurn(Player player) {
         assert null != player : "player should not be null";
         this.currentPlayer = player;
     }
@@ -47,7 +47,7 @@ public class XoGame {
         this.xoGame[x][y] = player.getMark();
     }
 
-    private void setXoGame(Character[][] game){
+    private void setXoGame(Character[][] game) {
         assert game != null : "game should not be null";
         this.xoGame = game;
     }
@@ -58,8 +58,20 @@ public class XoGame {
         return true;
     }
 
-    public void move(int x, int y, Player player) throws DataOutOfBoundException, IlligalMoveException{
+    public void move(int x, int y, Player player) throws DataOutOfBoundException, IlligalMoveException {
         assert player != null : "player should not be null";
+        if (verifyMove(x, y)) this.setMark(x,y,player);
+
+    }
+
+    public Boolean verifyEnd(Character[][] xoGame, Character character) {
+
+        Boolean isEnd = false;
+        if(verifyVertical(xoGame,character) || verifyHorizontal(xoGame,character) || verifyCross(xoGame,character) || verifyDraw(xoGame)){
+            isEnd = true;
+        }
+        return isEnd;
+
         if(verifyMove(x,y)) this.setMark(x,y,player);
 
     }
@@ -73,21 +85,74 @@ public class XoGame {
         }
     }
 
-    public Boolean verifyEnd(Character[][] xoGame){
-        return true;
+    public Boolean verifyVertical(Character[][] xoGame, Character character) {
+
+        Boolean isWin = false;
+        for (int column = 0; column < 3; column++) {
+            for (int row = 0; row < 3; row++) {
+                if (xoGame[row][column] == character) {
+                    isWin = true;
+                } else {
+                    isWin = false;
+                    break;
+                }
+            }
+            if (isWin == true) {
+                break;
+            }
+        }
+        return isWin;
+
     }
 
-    protected Boolean verifyVertical(Character[][] xoGame,Character character){
-        return true;
+    public Boolean verifyHorizontal(Character[][] xoGame, Character character) {
+
+        Boolean isWin = false;
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (xoGame[row][column] == character) {
+                    isWin = true;
+                } else {
+                    isWin = false;
+                    break;
+                }
+            }
+            if (isWin == true) {
+                break;
+            }
+        }
+        return isWin;
+
     }
-    protected Boolean verifyHorizontal(Character[][] xoGame,Character character){
-        return true;
+
+    public Boolean verifyCross(Character[][] xoGame, Character character) {
+
+        Boolean isWin = false;
+        if(xoGame[0][0] == character && xoGame[1][1] == character && xoGame[2][2] == character){
+            isWin = true;
+        } else if(xoGame[0][2] == character && xoGame[1][1] == character && xoGame[2][0] == character){
+            isWin = true;
+        }
+        return isWin;
+
     }
-    protected Boolean verifyCross(Character[][] xoGame,Character character){
-        return true;
-    }
-    protected Boolean verifyDraw(Character[][] xoGame,Character character){
-        return true;
+
+    protected Boolean verifyDraw(Character[][] xoGame) {
+
+        Boolean isDraw = true;
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (xoGame[row][column] == ' ') {
+                    isDraw = false;
+                    break;
+                }
+            }
+            if (isDraw == false) {
+                break;
+            }
+        }
+        return isDraw;
+
     }
 
 }
