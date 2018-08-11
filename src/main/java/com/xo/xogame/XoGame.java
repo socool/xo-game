@@ -5,6 +5,7 @@ public class XoGame {
     private Character currentCharacter;
 
     public Character[][] initialGame(){
+        this.setCurrentTurn(new Character('O'));
         Character[][] xoGame = new Character[3][3];
         for (int row = 0; row < 3; row ++){
             for (int col = 0; col < 3; col++){
@@ -15,15 +16,19 @@ public class XoGame {
     }
 
     public Character getCurrent(){
-        return null;
+        return this.currentCharacter;
     }
 
     protected void switchTurn(){
-
+        if(this.getCurrent()=='X'){
+            this.setCurrentTurn('O');
+        }else{
+            this.setCurrentTurn('X');
+        }
     }
 
     public void setCurrentTurn(Character character){
-
+        this.currentCharacter = character;
     }
 
     public Character[] getXo(){
