@@ -4,19 +4,15 @@ import com.xo.xogame.exception.DataOutOfBoundException;
 import com.xo.xogame.exception.IlligalMoveException;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class XoGameTest {
     @Test
     public void testInitialGame(){
         XoGame game = new XoGame();
         game.initialGame();
-        Character[][] actualResult = game.initialGame();
-        Character[][] expectedResult = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
-        assertTrue(Arrays.deepEquals(expectedResult, actualResult));
+        assertEquals(game.getPlayers().length,2);
+        assertEquals(game.getGameSize(),3);
     }
 
     @Test
@@ -47,20 +43,12 @@ public class XoGameTest {
     }
 
     @Test
-    public void testGetXo(){
-        XoGame game = new XoGame();
-        game.initialGame();
-        Character[][] expectedXoGameArrays = new Character[][]{{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
-        assertTrue(Arrays.deepEquals(game.getXo(), expectedXoGameArrays));
-    }
-
-    @Test
     public void testMoveXto1_1() throws DataOutOfBoundException,IlligalMoveException {
         XoGame game = new XoGame();
         game.initialGame();
         Player xPlayer = new Player("X", 'X');
         game.move(1,1,xPlayer);
-        assertEquals(game.getXo()[1][1],new Character('X'));
+        assertEquals(game.getMark(1,1),new Character('X'));
     }
 
     @Test
@@ -69,7 +57,7 @@ public class XoGameTest {
         game.initialGame();
         Player oPlayer = new Player("O", 'O');
         game.move(0,0,oPlayer);
-        assertEquals(game.getXo()[0][0],new Character('O'));
+        assertEquals(game.getMark(0,0),new Character('O'));
     }
 
     @Test(expected = DataOutOfBoundException.class)
