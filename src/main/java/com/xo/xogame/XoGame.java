@@ -64,9 +64,9 @@ public class XoGame {
 
     }
 
-    public Boolean verifyEnd(Character[][] xoGame, Player player) {
+    public Boolean verifyEnd(Player player) {
         Boolean isEnd = false;
-        if(verifyVertical(xoGame,player) || verifyHorizontal(xoGame,player) || verifyCross(xoGame,player) || verifyDraw(xoGame)){
+        if(verifyVertical(player) || verifyHorizontal(player) || verifyCross(player) || verifyDraw()){
             isEnd = true;
         }
         return isEnd;
@@ -81,7 +81,7 @@ public class XoGame {
         }
     }
 
-    public Boolean verifyVertical(Character[][] xoGame, Player player) {
+    public Boolean verifyVertical(Player player) {
         Boolean isWin = false;
         for (int column = 0; column < 3; column++) {
             for (int row = 0; row < 3; row++) {
@@ -99,7 +99,7 @@ public class XoGame {
         return isWin;
     }
 
-    public Boolean verifyHorizontal(Character[][] xoGame, Player player) {
+    public Boolean verifyHorizontal(Player player) {
         Boolean isWin = false;
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
@@ -117,7 +117,7 @@ public class XoGame {
         return isWin;
     }
 
-    public Boolean verifyCross(Character[][] xoGame, Player player) {
+    public Boolean verifyCross(Player player) {
         Boolean isWin = false;
         if(xoGame[0][0] == player.getMark() && xoGame[1][1] == player.getMark() && xoGame[2][2] == player.getMark()){
             isWin = true;
@@ -127,11 +127,11 @@ public class XoGame {
         return isWin;
     }
 
-    protected Boolean verifyDraw(Character[][] xoGame) {
+    protected Boolean verifyDraw() {
         Boolean isDraw = true;
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
-                if (xoGame[row][column] == ' ') {
+                if (this.xoGame[row][column] == ' ') {
                     isDraw = false;
                     break;
                 }
@@ -142,5 +142,4 @@ public class XoGame {
         }
         return isDraw;
     }
-
 }
