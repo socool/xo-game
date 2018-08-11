@@ -1,4 +1,4 @@
-package com.xo.xogame;
+package com.xo.xogame.exception;
 
 public class DataOutOfBoundException extends Exception {
     public DataOutOfBoundException() {
