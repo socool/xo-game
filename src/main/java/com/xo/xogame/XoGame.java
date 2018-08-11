@@ -64,16 +64,13 @@ public class XoGame {
 
     }
 
-    public Boolean verifyEnd(Character[][] xoGame, Character character) {
+    public Boolean verifyEnd(Character[][] xoGame, Player player) {
 
         Boolean isEnd = false;
-        if(verifyVertical(xoGame,character) || verifyHorizontal(xoGame,character) || verifyCross(xoGame,character) || verifyDraw(xoGame)){
+        if(verifyVertical(xoGame,player) || verifyHorizontal(xoGame,player) || verifyCross(xoGame,player) || verifyDraw(xoGame)){
             isEnd = true;
         }
         return isEnd;
-
-        if(verifyMove(x,y)) this.setMark(x,y,player);
-
     }
 
     public void displayGame(){
@@ -85,12 +82,12 @@ public class XoGame {
         }
     }
 
-    public Boolean verifyVertical(Character[][] xoGame, Character character) {
+    public Boolean verifyVertical(Character[][] xoGame, Player player) {
 
         Boolean isWin = false;
         for (int column = 0; column < 3; column++) {
             for (int row = 0; row < 3; row++) {
-                if (xoGame[row][column] == character) {
+                if (xoGame[row][column] == player.getMark()) {
                     isWin = true;
                 } else {
                     isWin = false;
@@ -105,12 +102,12 @@ public class XoGame {
 
     }
 
-    public Boolean verifyHorizontal(Character[][] xoGame, Character character) {
+    public Boolean verifyHorizontal(Character[][] xoGame, Player player) {
 
         Boolean isWin = false;
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
-                if (xoGame[row][column] == character) {
+                if (xoGame[row][column] == player.getMark()) {
                     isWin = true;
                 } else {
                     isWin = false;
@@ -125,12 +122,12 @@ public class XoGame {
 
     }
 
-    public Boolean verifyCross(Character[][] xoGame, Character character) {
+    public Boolean verifyCross(Character[][] xoGame, Player player) {
 
         Boolean isWin = false;
-        if(xoGame[0][0] == character && xoGame[1][1] == character && xoGame[2][2] == character){
+        if(xoGame[0][0] == player.getMark() && xoGame[1][1] == player.getMark() && xoGame[2][2] == player.getMark()){
             isWin = true;
-        } else if(xoGame[0][2] == character && xoGame[1][1] == character && xoGame[2][0] == character){
+        } else if(xoGame[0][2] == player.getMark() && xoGame[1][1] == player.getMark() && xoGame[2][0] == player.getMark()){
             isWin = true;
         }
         return isWin;

@@ -95,11 +95,12 @@ public class XoGameTest {
     public void testVerifyEndCaseWinVertival(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[1][0] = 'X';
         initBoardXO[2][0] = 'X';
-        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        Boolean isEnd = game.verifyEnd(initBoardXO,xPlayer);
         assertEquals(isEnd,true);
 
     }
@@ -108,11 +109,12 @@ public class XoGameTest {
     public void testVerifyEndCaseWinHorizontal(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[0][1] = 'X';
         initBoardXO[0][2] = 'X';
-        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        Boolean isEnd = game.verifyEnd(initBoardXO,xPlayer);
         assertEquals(isEnd,true);
 
     }
@@ -121,11 +123,12 @@ public class XoGameTest {
     public void testVerifyEndCaseWinCross(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][2] = 'X';
-        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        Boolean isEnd = game.verifyEnd(initBoardXO,xPlayer);
         assertEquals(isEnd,true);
 
     }
@@ -134,6 +137,7 @@ public class XoGameTest {
     public void testVerifyEndCaseDraw(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'O';
         initBoardXO[0][1] = 'X';
@@ -144,7 +148,7 @@ public class XoGameTest {
         initBoardXO[2][0] = 'X';
         initBoardXO[2][1] = 'O';
         initBoardXO[2][2] = 'X';
-        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        Boolean isEnd = game.verifyEnd(initBoardXO,xPlayer);
         assertEquals(isEnd,true);
 
     }
@@ -153,11 +157,12 @@ public class XoGameTest {
     public void testVerifyVerticalWinAtFirstColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[1][0] = 'X';
         initBoardXO[2][0] = 'X';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -166,11 +171,12 @@ public class XoGameTest {
     public void testVerifyVerticalWinAtSecondColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][1] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][1] = 'X';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -179,11 +185,12 @@ public class XoGameTest {
     public void testVerifyVerticalWinAtThirdColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][2] = 'X';
         initBoardXO[1][2] = 'X';
         initBoardXO[2][2] = 'X';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -192,11 +199,12 @@ public class XoGameTest {
     public void testVerifyVerticalNotWinAtFirstColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'O';
         initBoardXO[1][0] = 'X';
         initBoardXO[2][0] = 'X';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -205,11 +213,12 @@ public class XoGameTest {
     public void testVerifyVerticalNotWinAtSecondColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][1] = 'X';
         initBoardXO[1][1] = 'O';
         initBoardXO[2][1] = 'X';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -218,11 +227,12 @@ public class XoGameTest {
     public void testVerifyVerticalNotWinAtThirdColumn(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][2] = 'X';
         initBoardXO[1][2] = 'X';
         initBoardXO[2][2] = 'O';
-        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        Boolean isWin = game.verifyVertical(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -231,11 +241,12 @@ public class XoGameTest {
     public void testVerifyHorizontalWinAtFirstRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[0][1] = 'X';
         initBoardXO[0][2] = 'X';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -244,11 +255,12 @@ public class XoGameTest {
     public void testVerifyHorizontalWinAtSecondRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[1][0] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[1][2] = 'X';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -257,11 +269,12 @@ public class XoGameTest {
     public void testVerifyHorizontalWinAtThirdRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[2][0] = 'X';
         initBoardXO[2][1] = 'X';
         initBoardXO[2][2] = 'X';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,true);
     }
     
@@ -278,11 +291,12 @@ public class XoGameTest {
     public void testVerifyHorizontalNotWinAtFirstRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'O';
         initBoardXO[0][1] = 'X';
         initBoardXO[0][2] = 'X';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -291,11 +305,12 @@ public class XoGameTest {
     public void testVerifyHorizontalNotWinAtSecondRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[1][0] = 'X';
         initBoardXO[1][1] = 'O';
         initBoardXO[1][2] = 'X';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -304,11 +319,12 @@ public class XoGameTest {
     public void testVerifyHorizontalNotWinAtThirdRow(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[2][0] = 'X';
         initBoardXO[2][1] = 'X';
         initBoardXO[2][2] = 'O';
-        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        Boolean isWin = game.verifyHorizontal(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -317,11 +333,12 @@ public class XoGameTest {
     public void testVerifyCrossWinLeftToRight(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][2] = 'X';
-        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        Boolean isWin = game.verifyCross(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -330,11 +347,12 @@ public class XoGameTest {
     public void testVerifyCrossWinRightToLeft(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][2] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][0] = 'X';
-        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        Boolean isWin = game.verifyCross(initBoardXO,xPlayer);
         assertEquals(isWin,true);
 
     }
@@ -343,11 +361,12 @@ public class XoGameTest {
     public void testVerifyCrossNotWinLeftToRight(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][0] = 'O';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][2] = 'X';
-        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        Boolean isWin = game.verifyCross(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
@@ -356,11 +375,12 @@ public class XoGameTest {
     public void testVerifyCrossNotWinRightToLeft(){
 
         XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
         Character[][] initBoardXO = new Character[3][3];
         initBoardXO[0][2] = 'X';
         initBoardXO[1][1] = 'X';
         initBoardXO[2][0] = 'O';
-        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        Boolean isWin = game.verifyCross(initBoardXO,xPlayer);
         assertEquals(isWin,false);
 
     }
