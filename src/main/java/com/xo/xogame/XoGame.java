@@ -64,6 +64,15 @@ public class XoGame {
 
     }
 
+    public void displayGame(){
+        for (int i = 0; i < this.xoGame.length; i++) {
+            for (int j = 0; j < this.xoGame.length; j++) {
+                System.out.print(this.getMark(i,j)+"|");
+            }
+            System.out.println();
+        }
+    }
+
     public Boolean verifyEnd(Character[][] xoGame){
         return true;
     }

@@ -2,11 +2,19 @@ package com.xo.xogame;
 
 import com.xo.xogame.exception.DataOutOfBoundException;
 import com.xo.xogame.exception.IlligalMoveException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
 public class XoGameTest {
+    @Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
     @Test
     public void testInitialGame(){
         XoGame game = new XoGame();
@@ -81,6 +89,15 @@ public class XoGameTest {
         Player oPlayer = new Player("O", 'O');
         game.move(1,1,oPlayer);
         game.verifyMove(1,1);
+    }
+
+    @Test
+    public void testDisplayGame(){
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.displayGame();
+        String expected = " | | |\n | | |\n | | |\n";
+        assertEquals(systemOutRule.getLog(),expected);
     }
 
     @Test
