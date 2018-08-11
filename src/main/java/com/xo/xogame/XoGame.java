@@ -40,11 +40,19 @@ public class XoGame {
         this.xoGame = game;
     }
 
-    public Boolean verifyMove(int x, int y, Character character){
+    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException,IlligalMoveException{
+        if((x > 2 || y > 2) || (x < 0 || y < 0)){
+            throw new DataOutOfBoundException();
+        }else if(this.getXo()[x][y] != ' '){
+            throw new IlligalMoveException();
+        }
         return true;
     }
 
-    public void move(int x, int y, Character character){
+    public void move(int x, int y, Character character) throws DataOutOfBoundException, IlligalMoveException{
+        if(verifyMove(x,y)){
+            this.getXo()[x][y] = character;
+        }
 
     }
 

@@ -14,7 +14,7 @@ public class XoGameTest {
         game.initialGame();
         Character[][] actualResult = game.initialGame();
         Character[][] expectedResult = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
-        assertEquals(expectedResult,actualResult);
+        assertTrue(Arrays.deepEquals(expectedResult, actualResult));
     }
 
     @Test
@@ -64,8 +64,33 @@ public class XoGameTest {
     }
 
     @Test
-    public void move(){
-        assert(false);
+    public void moveXto1_1() throws DataOutOfBoundException,IlligalMoveException{
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.move(1,1,'X');
+        assertEquals(game.getXo()[1][1],new Character('X'));
+    }
+
+    @Test
+    public void moveOto0_0() throws DataOutOfBoundException,IlligalMoveException{
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.move(0,0,'O');
+        assertEquals(game.getXo()[0][0],new Character('O'));
+    }
+
+    @Test(expected = DataOutOfBoundException.class)
+    public void moveErrorOto3_0() throws DataOutOfBoundException,IlligalMoveException{
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.move(3,0,'O');
+    }
+
+    @Test(expected = DataOutOfBoundException.class)
+    public void moveErrorXtoMinus1_2() throws DataOutOfBoundException,IlligalMoveException{
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.move(-1,2,'X');
     }
 
     @Test
