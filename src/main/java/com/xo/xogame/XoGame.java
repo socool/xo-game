@@ -5,10 +5,15 @@ import com.xo.xogame.exception.IlligalMoveException;
 
 public class XoGame {
     private Character[][] xoGame;
-    private Character currentPlayer;
+    private Player[] players = new Player[2];
+    private Player currentPlayer;
 
     public Character[][] initialGame(){
-        this.setPlayerTurn('O');
+        Player xPlayer = new Player("X",'X');
+        Player oPlayer = new Player("O",'O');
+        this.players[0] = xPlayer;
+        this.players[1] = oPlayer;
+        this.setPlayerTurn(xPlayer);
         Character[][] xoGame = new Character[3][3];
         for (int row = 0; row < 3; row ++){
             for (int col = 0; col < 3; col++){
@@ -19,19 +24,11 @@ public class XoGame {
         return xoGame;
     }
 
-    public Character getCurrentPlayer(){
+    public Player getCurrentPlayer(){
         return this.currentPlayer;
     }
 
-    protected void switchTurn(){
-        if(this.getCurrentPlayer()=='X'){
-            this.setPlayerTurn('O');
-        }else{
-            this.setPlayerTurn('X');
-        }
-    }
-
-    public void setPlayerTurn(Character player){
+    public void setPlayerTurn(Player player){
         assert null != player : "player should not be null";
         this.currentPlayer = player;
     }
@@ -40,7 +37,7 @@ public class XoGame {
         return this.xoGame;
     }
 
-    public void setXoGame(Character[][] game){
+    private void setXoGame(Character[][] game){
         assert game != null : "game should not be null";
         this.xoGame = game;
     }
@@ -51,9 +48,9 @@ public class XoGame {
         return true;
     }
 
-    public void move(int x, int y, Character player) throws DataOutOfBoundException, IlligalMoveException{
+    public void move(int x, int y, Player player) throws DataOutOfBoundException, IlligalMoveException{
         assert player != null : "player should not be null";
-        if(verifyMove(x,y)) this.getXo()[x][y] = player;
+        if(verifyMove(x,y)) this.getXo()[x][y] = player.getMark();
 
     }
 
