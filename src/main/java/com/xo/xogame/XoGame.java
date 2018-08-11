@@ -12,6 +12,7 @@ public class XoGame {
                 xoGame[row][col] = (char) (' ');
             }
         }
+        this.setXoGame(xoGame);
         return xoGame;
     }
 
@@ -31,8 +32,12 @@ public class XoGame {
         this.currentCharacter = character;
     }
 
-    public Character[] getXo(){
-        return null;
+    public Character[][] getXo(){
+        return this.xoGame;
+    }
+
+    public void setXoGame(Character[][] game){
+        this.xoGame = game;
     }
 
     public Boolean verifyMove(int x, int y, Character character){

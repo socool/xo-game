@@ -2,11 +2,10 @@ package com.xo.xogame;
 
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
 
 public class XoGameTest {
     @Test
@@ -36,12 +35,27 @@ public class XoGameTest {
 
     @Test
     public void setCurrentTurn(){
-        assert(false);
+        XoGame game = new XoGame();
+        game.initialGame();
+        game.setCurrentTurn('X');
+        assertEquals(game.getCurrent(),new Character('X'));
     }
 
     @Test
     public void getXo(){
-        assert(false);
+        XoGame game = new XoGame();
+        game.initialGame();
+        Character[][] expectedXoGameArrays = new Character[][]{{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+        assertTrue(Arrays.deepEquals(game.getXo(), expectedXoGameArrays));
+    }
+
+    @Test
+    public void setXo(){
+        XoGame game = new XoGame();
+        game.initialGame();
+        Character[][] actualXoGameArrays = new Character[][]{{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+        game.setXoGame(actualXoGameArrays);
+        assertTrue(Arrays.deepEquals(game.getXo(), actualXoGameArrays));
     }
 
     @Test
