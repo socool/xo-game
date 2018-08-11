@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class XoGameTest {
     @Test
-    public void initialGame(){
+    public void testInitialGame(){
         XoGame game = new XoGame();
         game.initialGame();
         Character[][] actualResult = game.initialGame();
@@ -20,7 +20,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void getCurrent(){
+    public void testGetCurrent(){
         XoGame game = new XoGame();
         game.initialGame();
         game.setPlayerTurn('X');
@@ -28,7 +28,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void switchTurn(){
+    public void testSwitchTurn(){
         XoGame game = new XoGame();
         game.initialGame();
         game.switchTurn();
@@ -36,7 +36,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void setCurrentTurn(){
+    public void testSetCurrentTurn(){
         XoGame game = new XoGame();
         game.initialGame();
         game.setPlayerTurn('X');
@@ -44,7 +44,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void getXo(){
+    public void testGetXo(){
         XoGame game = new XoGame();
         game.initialGame();
         Character[][] expectedXoGameArrays = new Character[][]{{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
@@ -52,7 +52,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void setXo(){
+    public void testSetXo(){
         XoGame game = new XoGame();
         game.initialGame();
         Character[][] actualXoGameArrays = new Character[][]{{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
@@ -61,7 +61,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void moveXto1_1() throws DataOutOfBoundException,IlligalMoveException {
+    public void testMoveXto1_1() throws DataOutOfBoundException,IlligalMoveException {
         XoGame game = new XoGame();
         game.initialGame();
         game.move(1,1,'X');
@@ -69,7 +69,7 @@ public class XoGameTest {
     }
 
     @Test
-    public void moveOto0_0() throws DataOutOfBoundException,IlligalMoveException{
+    public void testMoveOto0_0() throws DataOutOfBoundException,IlligalMoveException{
         XoGame game = new XoGame();
         game.initialGame();
         game.move(0,0,'O');
@@ -77,21 +77,21 @@ public class XoGameTest {
     }
 
     @Test(expected = DataOutOfBoundException.class)
-    public void verifyMove3_0() throws DataOutOfBoundException,IlligalMoveException{
+    public void testVerifyMove3_0() throws DataOutOfBoundException,IlligalMoveException{
         XoGame game = new XoGame();
         game.initialGame();
         game.verifyMove(3,0);
     }
 
     @Test(expected = DataOutOfBoundException.class)
-    public void verifyMoveMinus1_2() throws DataOutOfBoundException,IlligalMoveException{
+    public void testVerifyMoveMinus1_2() throws DataOutOfBoundException,IlligalMoveException{
         XoGame game = new XoGame();
         game.initialGame();
         game.verifyMove(-1,2);
     }
 
     @Test(expected = IlligalMoveException.class)
-    public void verifyDuplicateMove() throws DataOutOfBoundException,IlligalMoveException{
+    public void testVerifyDuplicateMove() throws DataOutOfBoundException,IlligalMoveException{
         XoGame game = new XoGame();
         game.initialGame();
         game.move(1,1,'O');
@@ -99,27 +99,27 @@ public class XoGameTest {
     }
 
     @Test
-    public void verifyEnd(){
+    public void testVerifyEnd(){
         assert(false);
     }
 
     @Test
-    public void verifyVertical(){
+    public void testVerifyVertical(){
         assert(false);
     }
 
     @Test
-    public void verifyHorizontal(){
+    public void testVerifyHorizontal(){
         assert(false);
     }
 
     @Test
-    public void verifyCross(){
+    public void testVerifyCross(){
         assert(false);
     }
 
     @Test
-    public void verifyDraw(){
+    public void testVerifyDraw(){
         assert(false);
     }
 }
