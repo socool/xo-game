@@ -8,9 +8,9 @@ public class XoGame {
     private Player[] players = new Player[2];
     private Player currentPlayer;
 
-    public Character[][] initialGame() {
-        Player xPlayer = new Player("X", 'X');
-        Player oPlayer = new Player("O", 'O');
+    public void initialGame(){
+        Player xPlayer = new Player("X",'X');
+        Player oPlayer = new Player("O",'O');
         this.players[0] = xPlayer;
         this.players[1] = oPlayer;
         this.setPlayerTurn(xPlayer);
@@ -21,7 +21,13 @@ public class XoGame {
             }
         }
         this.setXoGame(xoGame);
-        return xoGame;
+    }
+    public int getGameSize(){
+        return this.xoGame.length;
+    }
+
+    public Player[] getPlayers(){
+        return this.players;
     }
 
     public Player getCurrentPlayer() {
@@ -33,8 +39,12 @@ public class XoGame {
         this.currentPlayer = player;
     }
 
-    public Character[][] getXo() {
-        return this.xoGame;
+    public Character getMark(int x, int y){
+        return this.xoGame[x][y];
+    }
+
+    protected void setMark(int x, int y, Player player){
+        this.xoGame[x][y] = player.getMark();
     }
 
     private void setXoGame(Character[][] game) {
@@ -42,15 +52,15 @@ public class XoGame {
         this.xoGame = game;
     }
 
-    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException, IlligalMoveException {
-        if ((x > 2 || y > 2) || (x < 0 || y < 0)) throw new DataOutOfBoundException();
-        else if (this.getXo()[x][y] != ' ') throw new IlligalMoveException();
+    public Boolean verifyMove(int x, int y) throws DataOutOfBoundException,IlligalMoveException {
+        if((x > 2 || y > 2) || (x < 0 || y < 0)) throw new DataOutOfBoundException();
+        else if(this.getMark(x,y) != ' ') throw new IlligalMoveException();
         return true;
     }
 
     public void move(int x, int y, Player player) throws DataOutOfBoundException, IlligalMoveException {
         assert player != null : "player should not be null";
-        if (verifyMove(x, y)) this.getXo()[x][y] = player.getMark();
+        if (verifyMove(x, y)) this.setMark(x,y,player);
 
     }
 
@@ -62,6 +72,17 @@ public class XoGame {
         }
         return isEnd;
 
+        if(verifyMove(x,y)) this.setMark(x,y,player);
+
+    }
+
+    public void displayGame(){
+        for (int i = 0; i < this.xoGame.length; i++) {
+            for (int j = 0; j < this.xoGame.length; j++) {
+                System.out.print(this.getMark(i,j)+"|");
+            }
+            System.out.println();
+        }
     }
 
     public Boolean verifyVertical(Character[][] xoGame, Character character) {
