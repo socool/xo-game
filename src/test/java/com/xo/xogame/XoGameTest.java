@@ -96,27 +96,307 @@ public class XoGameTest {
     }
 
     @Test
-    public void testVerifyEnd(){
-        assert(false);
+    public void testVerifyEndCaseWinVertival(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[1][0] = 'X';
+        initBoardXO[2][0] = 'X';
+        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        assertEquals(isEnd,true);
+
     }
 
     @Test
-    public void testVerifyVertical(){
-        assert(false);
+    public void testVerifyEndCaseWinHorizontal(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'X';
+        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        assertEquals(isEnd,true);
+
     }
 
     @Test
-    public void testVerifyHorizontal(){
-        assert(false);
+    public void testVerifyEndCaseWinCross(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][2] = 'X';
+        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        assertEquals(isEnd,true);
+
     }
 
     @Test
-    public void testVerifyCross(){
-        assert(false);
+    public void testVerifyEndCaseDraw(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'O';
+        initBoardXO[1][0] = 'O';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[1][2] = 'X';
+        initBoardXO[2][0] = 'X';
+        initBoardXO[2][1] = 'O';
+        initBoardXO[2][2] = 'X';
+        Boolean isEnd = game.verifyEnd(initBoardXO,'X');
+        assertEquals(isEnd,true);
+
     }
 
     @Test
-    public void testVerifyDraw(){
-        assert(false);
+    public void testVerifyVerticalWinAtFirstColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[1][0] = 'X';
+        initBoardXO[2][0] = 'X';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,true);
+
     }
+
+    @Test
+    public void testVerifyVerticalWinAtSecondColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][1] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][1] = 'X';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyVerticalWinAtThirdColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][2] = 'X';
+        initBoardXO[1][2] = 'X';
+        initBoardXO[2][2] = 'X';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyVerticalNotWinAtFirstColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[1][0] = 'X';
+        initBoardXO[2][0] = 'X';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyVerticalNotWinAtSecondColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][1] = 'X';
+        initBoardXO[1][1] = 'O';
+        initBoardXO[2][1] = 'X';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyVerticalNotWinAtThirdColumn(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][2] = 'X';
+        initBoardXO[1][2] = 'X';
+        initBoardXO[2][2] = 'O';
+        Boolean isWin = game.verifyVertical(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalWinAtFirstRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'X';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalWinAtSecondRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[1][0] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[1][2] = 'X';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalWinAtThirdRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[2][0] = 'X';
+        initBoardXO[2][1] = 'X';
+        initBoardXO[2][2] = 'X';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalNotWinAtFirstRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'X';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalNotWinAtSecondRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[1][0] = 'X';
+        initBoardXO[1][1] = 'O';
+        initBoardXO[1][2] = 'X';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyHorizontalNotWinAtThirdRow(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[2][0] = 'X';
+        initBoardXO[2][1] = 'X';
+        initBoardXO[2][2] = 'O';
+        Boolean isWin = game.verifyHorizontal(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyCrossWinLeftToRight(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][2] = 'X';
+        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyCrossWinRightToLeft(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][2] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][0] = 'X';
+        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        assertEquals(isWin,true);
+
+    }
+
+    @Test
+    public void testVerifyCrossNotWinLeftToRight(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][2] = 'X';
+        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyCrossNotWinRightToLeft(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][2] = 'X';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[2][0] = 'O';
+        Boolean isWin = game.verifyCross(initBoardXO,'X');
+        assertEquals(isWin,false);
+
+    }
+
+    @Test
+    public void testVerifyDrawIsDraw(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'O';
+        initBoardXO[1][0] = 'O';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[1][2] = 'X';
+        initBoardXO[2][0] = 'X';
+        initBoardXO[2][1] = 'O';
+        initBoardXO[2][2] = 'X';
+        Boolean isDraw = game.verifyDraw(initBoardXO);
+        assertEquals(isDraw,true);
+
+    }
+
+    @Test
+    public void testVerifyDrawNotYetDraw(){
+
+        XoGame game = new XoGame();
+        Character[][] initBoardXO = new Character[3][3];
+        initBoardXO[0][0] = 'O';
+        initBoardXO[0][1] = 'X';
+        initBoardXO[0][2] = 'O';
+        initBoardXO[1][0] = ' ';
+        initBoardXO[1][1] = 'X';
+        initBoardXO[1][2] = 'X';
+        initBoardXO[2][0] = 'X';
+        initBoardXO[2][1] = 'O';
+        initBoardXO[2][2] = ' ';
+        Boolean isDraw = game.verifyDraw(initBoardXO);
+        assertEquals(isDraw,false);
+
+    }
+
 }
