@@ -1,16 +1,25 @@
 package com.xo.xogame;
 
 import com.xo.xogame.exception.DataOutOfBoundException;
+import com.xo.xogame.exception.IlligalFormatException;
 import com.xo.xogame.exception.IlligalMoveException;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
+import static org.mockito.Mockito.when;
 
 public class XoGameTest {
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
+    @Rule
+    public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
     @Test
     public void testInitialGame(){
@@ -257,6 +266,16 @@ public class XoGameTest {
     }
 
     @Test
+    public void testPlayerInput(){
+        XoGame game = new XoGame();
+        Player xPlayer = new Player("X", 'X');
+        String expected = "Your Turn:X Please Input your move (x,y): \n";
+        systemInMock.provideLines("1,2");
+        game.playerInput(xPlayer);
+        assertEquals(systemOutRule.getLog(),expected);
+    }
+
+    @Test
     public void testDisplayGame(){
         XoGame game = new XoGame();
         game.initialGame();
@@ -405,4 +424,38 @@ public class XoGameTest {
 
         game.setMark(0, 0,xPlayer);
     }
+
+    @Test
+    public void testParseCorrectInput() throws IlligalFormatException {
+        XoGame game = new XoGame();
+        assertArrayEquals(game.parseInput(new String[]{"0","1"}),new Integer[]{0,1});
+        assertArrayEquals(game.parseInput(new String[]{"1","2"}),new Integer[]{1,2});
+        assertArrayEquals(game.parseInput(new String[]{"2","2"}),new Integer[]{2,2});
+    }
+
+    @Test(expected = IlligalFormatException.class)
+    public void testParseIncorrectXCharacterInput() throws IlligalFormatException {
+        XoGame game = new XoGame();
+        game.parseInput(new String[]{"x","1"});
+    }
+
+    @Test(expected = IlligalFormatException.class)
+    public void testParseIncorrectYCharacterInput() throws IlligalFormatException {
+        XoGame game = new XoGame();
+        game.parseInput(new String[]{"1","y"});
+    }
+
+    @Test(expected = IlligalFormatException.class)
+    public void testParseIncorrecEmptyInput() throws IlligalFormatException {
+        XoGame game = new XoGame();
+        game.parseInput(new String[]{"","1"});
+    }
+
+    @Test(expected = IlligalFormatException.class)
+    public void testIllegalInputFormat() throws IlligalFormatException {
+        XoGame game = new XoGame();
+        //game.checkInputFormat("1,");
+        game.checkInputFormat("1");
+    }
+
 }
